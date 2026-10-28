@@ -42,7 +42,8 @@ export const Route = createFileRoute("/_authenticated/dashboard")({
       { property: "og:title", content: "Digivista SecureOps — Operations Dashboard" },
       {
         property: "og:description",
-        content: "Multi-tenant SecureOps command centre for managed infrastructure, tickets and AMC.",
+        content:
+          "Multi-tenant SecureOps command centre for managed infrastructure, tickets and AMC.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -117,10 +118,32 @@ function Dashboard() {
       description="Live posture across every managed tenant, device and field engineer."
     >
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <Kpi icon={TrendingUp} title="AMC revenue (FY, ₹L)" value="132.8" delta="11.4%" hint="Recurring contracts across 5 tenants" />
-        <Kpi icon={TicketIcon} title="Open tickets" value={String(open)} hint={`${resolved} resolved in the last 30 days`} />
-        <Kpi icon={HardDrive} title="Managed assets" value={String(assets.length)} delta="4.2%" hint="CCTV, network, biometric & servers" />
-        <Kpi icon={Users} title="Engineers available" value={`${online}/${engineers.length}`} hint="Live field availability" />
+        <Kpi
+          icon={TrendingUp}
+          title="AMC revenue (FY, ₹L)"
+          value="132.8"
+          delta="11.4%"
+          hint="Recurring contracts across 5 tenants"
+        />
+        <Kpi
+          icon={TicketIcon}
+          title="Open tickets"
+          value={String(open)}
+          hint={`${resolved} resolved in the last 30 days`}
+        />
+        <Kpi
+          icon={HardDrive}
+          title="Managed assets"
+          value={String(assets.length)}
+          delta="4.2%"
+          hint="CCTV, network, biometric & servers"
+        />
+        <Kpi
+          icon={Users}
+          title="Engineers available"
+          value={`${online}/${engineers.length}`}
+          hint="Live field availability"
+        />
       </div>
 
       <div className="mt-4 grid gap-4 lg:grid-cols-3">
@@ -151,9 +174,24 @@ function Dashboard() {
                     <stop offset="100%" stopColor="var(--color-chart-2)" stopOpacity={0.02} />
                   </linearGradient>
                 </defs>
-                <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" vertical={false} />
-                <XAxis dataKey="m" tickLine={false} axisLine={false} fontSize={12} stroke="var(--color-muted-foreground)" />
-                <YAxis tickLine={false} axisLine={false} fontSize={12} stroke="var(--color-muted-foreground)" />
+                <CartesianGrid
+                  strokeDasharray="3 3"
+                  stroke="var(--color-border)"
+                  vertical={false}
+                />
+                <XAxis
+                  dataKey="m"
+                  tickLine={false}
+                  axisLine={false}
+                  fontSize={12}
+                  stroke="var(--color-muted-foreground)"
+                />
+                <YAxis
+                  tickLine={false}
+                  axisLine={false}
+                  fontSize={12}
+                  stroke="var(--color-muted-foreground)"
+                />
                 <Tooltip
                   contentStyle={{
                     background: "var(--color-surface)",
@@ -162,8 +200,20 @@ function Dashboard() {
                     fontSize: 12,
                   }}
                 />
-                <Area type="monotone" dataKey="amc" stroke="var(--color-chart-1)" fill="url(#amc)" strokeWidth={2} />
-                <Area type="monotone" dataKey="services" stroke="var(--color-chart-2)" fill="url(#svc)" strokeWidth={2} />
+                <Area
+                  type="monotone"
+                  dataKey="amc"
+                  stroke="var(--color-chart-1)"
+                  fill="url(#amc)"
+                  strokeWidth={2}
+                />
+                <Area
+                  type="monotone"
+                  dataKey="services"
+                  stroke="var(--color-chart-2)"
+                  fill="url(#svc)"
+                  strokeWidth={2}
+                />
               </AreaChart>
             </ResponsiveContainer>
           </CardContent>
@@ -176,9 +226,29 @@ function Dashboard() {
           <CardContent className="h-[280px] pt-0">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={byType} margin={{ left: -22, right: 8, top: 8 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" vertical={false} />
-                <XAxis dataKey="type" tickLine={false} axisLine={false} fontSize={11} stroke="var(--color-muted-foreground)" interval={0} angle={-30} textAnchor="end" height={54} />
-                <YAxis tickLine={false} axisLine={false} fontSize={12} stroke="var(--color-muted-foreground)" allowDecimals={false} />
+                <CartesianGrid
+                  strokeDasharray="3 3"
+                  stroke="var(--color-border)"
+                  vertical={false}
+                />
+                <XAxis
+                  dataKey="type"
+                  tickLine={false}
+                  axisLine={false}
+                  fontSize={11}
+                  stroke="var(--color-muted-foreground)"
+                  interval={0}
+                  angle={-30}
+                  textAnchor="end"
+                  height={54}
+                />
+                <YAxis
+                  tickLine={false}
+                  axisLine={false}
+                  fontSize={12}
+                  stroke="var(--color-muted-foreground)"
+                  allowDecimals={false}
+                />
                 <Tooltip
                   cursor={{ fill: "var(--color-muted)" }}
                   contentStyle={{
@@ -284,7 +354,10 @@ function Dashboard() {
           </CardHeader>
           <CardContent className="space-y-2 pt-0">
             {companies.map((c) => (
-              <div key={c.id} className="flex items-center gap-3 rounded-md border border-border px-3 py-2.5">
+              <div
+                key={c.id}
+                className="flex items-center gap-3 rounded-md border border-border px-3 py-2.5"
+              >
                 <div className="flex h-9 w-9 items-center justify-center rounded-md bg-primary-soft text-xs font-bold text-primary">
                   {c.name.slice(0, 2).toUpperCase()}
                 </div>

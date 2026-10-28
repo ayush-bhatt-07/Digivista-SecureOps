@@ -46,7 +46,10 @@ export const Route = createFileRoute("/")({
         content:
           "Multi-tenant operations platform for CCTV, biometrics, networks, servers, endpoints, field engineers, service desk tickets and AMC contracts.",
       },
-      { property: "og:title", content: "Digivista SecureOps — Every device. Every site. One console." },
+      {
+        property: "og:title",
+        content: "Digivista SecureOps — Every device. Every site. One console.",
+      },
       {
         property: "og:description",
         content:
@@ -121,11 +124,15 @@ function AssetVisual() {
           <div className="min-w-0 flex-1">
             <div className="flex items-baseline justify-between gap-2">
               <span className="truncate text-[11px] font-medium">{row.name}</span>
-              <span className="text-[10px] font-semibold tabular-nums text-muted-foreground">{row.count}</span>
+              <span className="text-[10px] font-semibold tabular-nums text-muted-foreground">
+                {row.count}
+              </span>
             </div>
             <div className="mt-1 flex items-center gap-2">
               <Bar value={row.health} className={row.tone} />
-              <span className="w-6 shrink-0 text-right text-[9px] tabular-nums text-muted-foreground">{row.health}%</span>
+              <span className="w-6 shrink-0 text-right text-[9px] tabular-nums text-muted-foreground">
+                {row.health}%
+              </span>
             </div>
           </div>
         </div>
@@ -156,12 +163,17 @@ function DeskVisual() {
       <div className="flex shrink-0 items-center justify-center">
         <Ring value={96} size={96} stroke={9}>
           <span className="text-xl font-bold leading-none tracking-tight">96%</span>
-          <span className="mt-1 text-[7px] uppercase tracking-[0.12em] text-muted-foreground">within SLA</span>
+          <span className="mt-1 text-[7px] uppercase tracking-[0.12em] text-muted-foreground">
+            within SLA
+          </span>
         </Ring>
       </div>
       <div className="min-w-0 flex-1 space-y-1.5">
         {rows.map((row) => (
-          <div key={row.label} className="flex items-center gap-2 rounded-md bg-muted/50 px-2 py-1.5">
+          <div
+            key={row.label}
+            className="flex items-center gap-2 rounded-md bg-muted/50 px-2 py-1.5"
+          >
             <span
               className={cn(
                 "h-1.5 w-1.5 shrink-0 rounded-full",
@@ -190,10 +202,34 @@ function DeskVisual() {
 }
 
 const fleetTiles = [
-  "ok", "ok", "ok", "warn", "ok", "ok", "ok",
-  "ok", "ok", "ok", "ok", "ok", "bad", "ok",
-  "ok", "ok", "warn", "ok", "ok", "ok", "ok",
-  "ok", "ok", "ok", "ok", "warn", "ok", "ok",
+  "ok",
+  "ok",
+  "ok",
+  "warn",
+  "ok",
+  "ok",
+  "ok",
+  "ok",
+  "ok",
+  "ok",
+  "ok",
+  "ok",
+  "bad",
+  "ok",
+  "ok",
+  "ok",
+  "warn",
+  "ok",
+  "ok",
+  "ok",
+  "ok",
+  "ok",
+  "ok",
+  "ok",
+  "ok",
+  "warn",
+  "ok",
+  "ok",
 ];
 
 function FleetVisual() {
@@ -211,7 +247,11 @@ function FleetVisual() {
             key={i}
             className={cn(
               "aspect-square rounded-[4px] transition-transform duration-200 hover:scale-110",
-              tile === "ok" ? "bg-success/75" : tile === "warn" ? "bg-accent/80" : "bg-destructive/80",
+              tile === "ok"
+                ? "bg-success/75"
+                : tile === "warn"
+                  ? "bg-accent/80"
+                  : "bg-destructive/80",
             )}
           />
         ))}
@@ -235,22 +275,48 @@ function FleetVisual() {
 
 function AmcVisual() {
   const rows = [
-    { company: "Northline Logistics", value: "₹18.4L", badge: "12 days", tone: "warning" as const, progress: 88, bar: "bg-accent" },
-    { company: "Aurora Textiles", value: "₹42.6L", badge: "Active", tone: "success" as const, progress: 64, bar: "bg-success" },
-    { company: "Vertex Mfg.", value: "₹6.2L", badge: "Expired", tone: "danger" as const, progress: 100, bar: "bg-destructive" },
+    {
+      company: "Northline Logistics",
+      value: "₹18.4L",
+      badge: "12 days",
+      tone: "warning" as const,
+      progress: 88,
+      bar: "bg-accent",
+    },
+    {
+      company: "Aurora Textiles",
+      value: "₹42.6L",
+      badge: "Active",
+      tone: "success" as const,
+      progress: 64,
+      bar: "bg-success",
+    },
+    {
+      company: "Vertex Mfg.",
+      value: "₹6.2L",
+      badge: "Expired",
+      tone: "danger" as const,
+      progress: 100,
+      bar: "bg-destructive",
+    },
   ];
 
   return (
     <div className="flex h-full flex-col justify-center gap-2">
       {rows.map((row) => (
-        <div key={row.company} className="rounded-lg border border-border/70 bg-background/70 p-2.5">
+        <div
+          key={row.company}
+          className="rounded-lg border border-border/70 bg-background/70 p-2.5"
+        >
           <div className="flex items-center justify-between gap-2">
             <span className="truncate text-[10px] font-medium">{row.company}</span>
             <Pill tone={row.tone}>{row.badge}</Pill>
           </div>
           <div className="mt-1.5 flex items-center gap-2">
             <Bar value={row.progress} className={row.bar} />
-            <span className="w-10 shrink-0 text-right text-[9px] font-semibold tabular-nums">{row.value}</span>
+            <span className="w-10 shrink-0 text-right text-[9px] font-semibold tabular-nums">
+              {row.value}
+            </span>
           </div>
         </div>
       ))}
@@ -295,7 +361,11 @@ function EngineerVisual() {
               <span
                 className={cn(
                   "absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full border-2 border-surface",
-                  e.status === "online" ? "bg-success" : e.status === "site" ? "bg-accent" : "bg-muted-foreground/50",
+                  e.status === "online"
+                    ? "bg-success"
+                    : e.status === "site"
+                      ? "bg-accent"
+                      : "bg-muted-foreground/50",
                 )}
               />
             </span>
@@ -340,20 +410,54 @@ function NetworkVisual() {
         ))}
         <circle cx="280" cy="95" r="52" fill="var(--color-primary)" fillOpacity="0.07" />
         <circle cx="280" cy="95" r="38" fill="var(--color-primary)" />
-        <text x="280" y="92" textAnchor="middle" fill="var(--color-primary-foreground)" fontSize="9" fontWeight="700">
+        <text
+          x="280"
+          y="92"
+          textAnchor="middle"
+          fill="var(--color-primary-foreground)"
+          fontSize="9"
+          fontWeight="700"
+        >
           SecureOps
         </text>
-        <text x="280" y="104" textAnchor="middle" fill="var(--color-primary-foreground)" fontSize="6.5" opacity="0.75">
+        <text
+          x="280"
+          y="104"
+          textAnchor="middle"
+          fill="var(--color-primary-foreground)"
+          fontSize="6.5"
+          opacity="0.75"
+        >
           1,866 assets
         </text>
         {graphTenants.map((t) => (
           <g key={t.mono}>
-            <circle cx={t.x} cy={t.y} r="20" fill="var(--color-surface)" stroke="var(--color-border)" strokeWidth="1.5" />
+            <circle
+              cx={t.x}
+              cy={t.y}
+              r="20"
+              fill="var(--color-surface)"
+              stroke="var(--color-border)"
+              strokeWidth="1.5"
+            />
             <circle cx={t.x} cy={t.y} r="20" fill="var(--color-accent)" fillOpacity="0.08" />
-            <text x={t.x} y={t.y + 3} textAnchor="middle" fill="var(--color-primary)" fontSize="8" fontWeight="700">
+            <text
+              x={t.x}
+              y={t.y + 3}
+              textAnchor="middle"
+              fill="var(--color-primary)"
+              fontSize="8"
+              fontWeight="700"
+            >
               {t.mono}
             </text>
-            <text x={t.x} y={t.y + 32} textAnchor="middle" fill="var(--color-muted-foreground)" fontSize="6.5">
+            <text
+              x={t.x}
+              y={t.y + 32}
+              textAnchor="middle"
+              fill="var(--color-muted-foreground)"
+              fontSize="6.5"
+            >
               {t.sites}
             </text>
           </g>
@@ -457,7 +561,8 @@ function LandingPage() {
     if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
     event.preventDefault();
     const index = showcaseTabs.findIndex((tab) => tab.id === activeTab);
-    const next = (index + (event.key === "ArrowRight" ? 1 : -1) + showcaseTabs.length) % showcaseTabs.length;
+    const next =
+      (index + (event.key === "ArrowRight" ? 1 : -1) + showcaseTabs.length) % showcaseTabs.length;
     const nextTab = showcaseTabs[next];
     setActiveTab(nextTab.id);
     document.getElementById(`showcase-tab-${nextTab.id}`)?.focus();
@@ -503,7 +608,9 @@ function LandingPage() {
               to="/auth"
               className={cn(
                 "hidden px-2 text-[13px] font-medium transition-colors sm:block",
-                solidHeader ? "text-muted-foreground hover:text-foreground" : "text-sidebar-foreground/70 hover:text-sidebar-foreground",
+                solidHeader
+                  ? "text-muted-foreground hover:text-foreground"
+                  : "text-sidebar-foreground/70 hover:text-sidebar-foreground",
               )}
             >
               Sign in
@@ -593,11 +700,14 @@ function LandingPage() {
               className="landing-rise mt-6 max-w-md text-[15px] leading-relaxed text-sidebar-foreground/70 sm:text-lg"
               style={{ animationDelay: "140ms" }}
             >
-              CCTV, biometrics, networks, servers and the engineers who keep them running — orchestrated from a single
-              command centre.
+              CCTV, biometrics, networks, servers and the engineers who keep them running —
+              orchestrated from a single command centre.
             </p>
 
-            <div className="landing-rise mt-8 flex flex-wrap items-center gap-3" style={{ animationDelay: "210ms" }}>
+            <div
+              className="landing-rise mt-8 flex flex-wrap items-center gap-3"
+              style={{ animationDelay: "210ms" }}
+            >
               <Link
                 to="/auth"
                 className="group inline-flex items-center gap-2 rounded-full bg-accent px-5 py-3 text-sm font-semibold text-accent-foreground shadow-[0_10px_30px_-10px_rgba(243,156,18,0.7)] transition-all hover:bg-accent/90"
@@ -624,7 +734,9 @@ function LandingPage() {
                 { value: "99.98%", label: "agent uptime" },
               ].map((stat) => (
                 <div key={stat.label}>
-                  <dt className="text-xl font-bold tracking-tight text-white sm:text-2xl">{stat.value}</dt>
+                  <dt className="text-xl font-bold tracking-tight text-white sm:text-2xl">
+                    {stat.value}
+                  </dt>
                   <dd className="mt-1 text-[10px] font-medium uppercase tracking-[0.12em] text-sidebar-foreground/45">
                     {stat.label}
                   </dd>
@@ -655,7 +767,9 @@ function LandingPage() {
                     {tenant.mono}
                   </span>
                   <div className="min-w-0">
-                    <p className="truncate text-[11px] font-semibold text-foreground">{tenant.name}</p>
+                    <p className="truncate text-[11px] font-semibold text-foreground">
+                      {tenant.name}
+                    </p>
                     <p className="text-[10px] text-muted-foreground">{tenant.meta}</p>
                   </div>
                 </div>
@@ -781,7 +895,10 @@ function LandingPage() {
       {/* ---------------------------------------------------------- */}
       {/* Showcase                                                   */}
       {/* ---------------------------------------------------------- */}
-      <section id="console" className="landing-dark overflow-hidden py-20 text-sidebar-foreground sm:py-24">
+      <section
+        id="console"
+        className="landing-dark overflow-hidden py-20 text-sidebar-foreground sm:py-24"
+      >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="mx-auto max-w-2xl text-center">
@@ -891,8 +1008,8 @@ function LandingPage() {
                 Proven by audit.
               </h2>
               <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                Six roles, nine modules, one immutable trail. Access is granted at the module level and enforced on
-                every request.
+                Six roles, nine modules, one immutable trail. Access is granted at the module level
+                and enforced on every request.
               </p>
               <ul className="mt-6 space-y-3">
                 {[
@@ -900,7 +1017,10 @@ function LandingPage() {
                   { icon: ScrollText, label: "Every action logged" },
                   { icon: ShieldCheck, label: "Tenant-isolated data" },
                 ].map((item) => (
-                  <li key={item.label} className="flex items-center gap-3 text-sm font-medium text-foreground">
+                  <li
+                    key={item.label}
+                    className="flex items-center gap-3 text-sm font-medium text-foreground"
+                  >
                     <span className="flex h-7 w-7 items-center justify-center rounded-md bg-primary-soft text-primary">
                       <item.icon className="h-3.5 w-3.5" />
                     </span>
@@ -925,10 +1045,15 @@ function LandingPage() {
 
               <div className="mt-4 space-y-2.5">
                 {roleRows.map((role) => (
-                  <div key={role.name} className="grid grid-cols-[6.5rem_1fr_auto] items-center gap-3">
+                  <div
+                    key={role.name}
+                    className="grid grid-cols-[6.5rem_1fr_auto] items-center gap-3"
+                  >
                     <span className="truncate text-[11px] font-medium">{role.name}</span>
                     <Bar value={role.width} className={role.tone} />
-                    <span className="w-[4.5rem] text-right text-[9px] text-muted-foreground">{role.scope}</span>
+                    <span className="w-[4.5rem] text-right text-[9px] text-muted-foreground">
+                      {role.scope}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -945,14 +1070,22 @@ function LandingPage() {
                 <ul className="mt-2 space-y-1.5">
                   {[
                     { action: "Role granted — technician", actor: "A. Kapoor", at: "2m ago" },
-                    { action: "Remote restart — sterling-pos-114", actor: "S. Pillai", at: "18m ago" },
+                    {
+                      action: "Remote restart — sterling-pos-114",
+                      actor: "S. Pillai",
+                      at: "18m ago",
+                    },
                     { action: "Contract renewed — Northline", actor: "D. Iyer", at: "1h ago" },
                   ].map((entry) => (
                     <li key={entry.action} className="flex items-center gap-2 text-[10px]">
                       <span className="h-1 w-1 shrink-0 rounded-full bg-accent" />
-                      <span className="min-w-0 flex-1 truncate text-foreground/85">{entry.action}</span>
+                      <span className="min-w-0 flex-1 truncate text-foreground/85">
+                        {entry.action}
+                      </span>
                       <span className="shrink-0 text-muted-foreground">{entry.actor}</span>
-                      <span className="w-10 shrink-0 text-right text-muted-foreground/70">{entry.at}</span>
+                      <span className="w-10 shrink-0 text-right text-muted-foreground/70">
+                        {entry.at}
+                      </span>
                     </li>
                   ))}
                 </ul>
@@ -1012,13 +1145,26 @@ function LandingPage() {
           <div className="flex items-center gap-3">
             <DigivistaLogo variant="light" />
             <span className="hidden h-6 w-px bg-border sm:block" />
-            <span className="hidden text-[11px] text-muted-foreground sm:block">Enterprise infrastructure operations</span>
+            <span className="hidden text-[11px] text-muted-foreground sm:block">
+              Enterprise infrastructure operations
+            </span>
           </div>
-          <nav className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[11px] font-medium text-muted-foreground" aria-label="Footer">
-            <a href="#platform" className="hover:text-foreground">Platform</a>
-            <a href="#modules" className="hover:text-foreground">Modules</a>
-            <a href="#security" className="hover:text-foreground">Security</a>
-            <Link to="/auth" className="hover:text-foreground">Sign in</Link>
+          <nav
+            className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[11px] font-medium text-muted-foreground"
+            aria-label="Footer"
+          >
+            <a href="#platform" className="hover:text-foreground">
+              Platform
+            </a>
+            <a href="#modules" className="hover:text-foreground">
+              Modules
+            </a>
+            <a href="#security" className="hover:text-foreground">
+              Security
+            </a>
+            <Link to="/auth" className="hover:text-foreground">
+              Sign in
+            </Link>
             <span className="text-muted-foreground/60">© 2026 Digivista Infotech</span>
           </nav>
         </div>

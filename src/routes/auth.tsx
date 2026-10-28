@@ -32,9 +32,15 @@ export const Route = createFileRoute("/auth")({
   head: () => ({
     meta: [
       { title: "Sign in — Digivista SecureOps" },
-      { name: "description", content: "Sign in to the Digivista SecureOps enterprise operations console." },
+      {
+        name: "description",
+        content: "Sign in to the Digivista SecureOps enterprise operations console.",
+      },
       { property: "og:title", content: "Sign in — Digivista SecureOps" },
-      { property: "og:description", content: "Secure, role-based access to the SecureOps console." },
+      {
+        property: "og:description",
+        content: "Secure, role-based access to the SecureOps console.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],
@@ -65,7 +71,10 @@ function GoogleMark() {
         fill="#34A853"
         d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.86-3c-1.08.72-2.45 1.16-4.07 1.16-3.13 0-5.78-2.11-6.73-4.96H1.29v3.09A11.99 11.99 0 0 0 12 24Z"
       />
-      <path fill="#FBBC05" d="M5.27 14.29a7.2 7.2 0 0 1 0-4.58V6.62H1.29a12 12 0 0 0 0 10.76l3.98-3.09Z" />
+      <path
+        fill="#FBBC05"
+        d="M5.27 14.29a7.2 7.2 0 0 1 0-4.58V6.62H1.29a12 12 0 0 0 0 10.76l3.98-3.09Z"
+      />
       <path
         fill="#EA4335"
         d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.26 2.69 1.29 6.62l3.98 3.09C6.22 6.86 8.87 4.75 12 4.75Z"
@@ -107,7 +116,9 @@ function AuthPage() {
   }
 
   async function google() {
-    const result = await lovable.auth.signInWithOAuth("google", { redirect_uri: window.location.origin });
+    const result = await lovable.auth.signInWithOAuth("google", {
+      redirect_uri: window.location.origin,
+    });
     if (result.error) toast.error("Google sign-in failed");
   }
 
@@ -138,7 +149,8 @@ function AuthPage() {
             One login.
           </h1>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-sidebar-foreground/60">
-            Role-scoped access to every tenant, site, device and ticket — with every action on the record.
+            Role-scoped access to every tenant, site, device and ticket — with every action on the
+            record.
           </p>
 
           <div className="landing-glass mt-9 rounded-2xl p-5">
@@ -148,7 +160,9 @@ function AuthPage() {
               </span>
               <div className="min-w-0">
                 <p className="truncate text-sm font-semibold text-white">Access granted</p>
-                <p className="truncate text-[11px] text-sidebar-foreground/55">Ravi Menon · Organization Admin</p>
+                <p className="truncate text-[11px] text-sidebar-foreground/55">
+                  Ravi Menon · Organization Admin
+                </p>
               </div>
               <span className="ml-auto inline-flex items-center gap-1 rounded-full bg-success/15 px-2 py-0.5 text-[10px] font-semibold text-success">
                 <Check className="h-2.5 w-2.5" /> Verified
@@ -167,7 +181,9 @@ function AuthPage() {
                   )}
                 >
                   <module.icon className="h-3 w-3 shrink-0" />
-                  <span className="min-w-0 flex-1 truncate text-[9px] font-medium">{module.label}</span>
+                  <span className="min-w-0 flex-1 truncate text-[9px] font-medium">
+                    {module.label}
+                  </span>
                   {module.locked ? (
                     <Lock className="h-2.5 w-2.5 shrink-0" />
                   ) : (
@@ -299,13 +315,20 @@ function AuthPage() {
 
           <div className="my-6 flex items-center gap-3">
             <span className="h-px flex-1 bg-border" />
-            <span className="text-[10px] font-medium uppercase tracking-[0.14em] text-muted-foreground">or continue with</span>
+            <span className="text-[10px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
+              or continue with
+            </span>
             <span className="h-px flex-1 bg-border" />
           </div>
 
-          <Button type="button" variant="outline" className="h-11 w-full gap-2 text-sm font-medium" onClick={google}>
+          <Button
+            type="button"
+            variant="outline"
+            className="h-11 w-full gap-2 text-sm font-medium"
+            onClick={google}
+          >
             <GoogleMark />
-            Google workspace
+            Continue with Google
           </Button>
 
           <button
@@ -327,7 +350,8 @@ function AuthPage() {
           <div className="mt-10 flex items-start gap-2 rounded-lg border border-border bg-surface/60 p-3">
             <Lock className="mt-0.5 h-3.5 w-3.5 shrink-0 text-accent" />
             <p className="text-[11px] leading-relaxed text-muted-foreground">
-              Protected by role-based access control. Every sign-in and action is recorded in the audit trail.
+              Protected by role-based access control. Every sign-in and action is recorded in the
+              audit trail.
             </p>
           </div>
         </div>

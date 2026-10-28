@@ -80,7 +80,10 @@ export function Ring({
   const radius = (size - stroke) / 2;
   const circumference = 2 * Math.PI * radius;
   return (
-    <div className="relative inline-flex items-center justify-center" style={{ width: size, height: size }}>
+    <div
+      className="relative inline-flex items-center justify-center"
+      style={{ width: size, height: size }}
+    >
       <svg width={size} height={size} className="-rotate-90" aria-hidden="true">
         <circle
           cx={size / 2}
@@ -102,14 +105,21 @@ export function Ring({
           strokeDashoffset={circumference * (1 - value / 100)}
         />
       </svg>
-      <div className="absolute inset-0 flex flex-col items-center justify-center leading-none">{children}</div>
+      <div className="absolute inset-0 flex flex-col items-center justify-center leading-none">
+        {children}
+      </div>
     </div>
   );
 }
 
 function MiniChart({ id, className }: { id: string; className?: string }) {
   return (
-    <svg viewBox="0 0 320 120" className={cn("h-full w-full", className)} preserveAspectRatio="none" aria-hidden="true">
+    <svg
+      viewBox="0 0 320 120"
+      className={cn("h-full w-full", className)}
+      preserveAspectRatio="none"
+      aria-hidden="true"
+    >
       <defs>
         <linearGradient id={`${id}-a`} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor="var(--color-chart-1)" stopOpacity="0.32" />
@@ -121,7 +131,16 @@ function MiniChart({ id, className }: { id: string; className?: string }) {
         </linearGradient>
       </defs>
       {[22, 50, 78, 106].map((y) => (
-        <line key={y} x1="0" y1={y} x2="320" y2={y} stroke="var(--color-border)" strokeWidth="1" strokeDasharray="3 5" />
+        <line
+          key={y}
+          x1="0"
+          y1={y}
+          x2="320"
+          y2={y}
+          stroke="var(--color-border)"
+          strokeWidth="1"
+          strokeDasharray="3 5"
+        />
       ))}
       <path
         d="M0 92 L40 80 L80 84 L120 64 L160 68 L200 46 L240 50 L280 30 L320 22 L320 120 L0 120 Z"
@@ -156,7 +175,11 @@ function Sparkline({ up = true }: { up?: boolean }) {
   return (
     <svg viewBox="0 0 44 16" className="h-3.5 w-10" aria-hidden="true">
       <path
-        d={up ? "M0 13 L8 11 L15 12 L22 7 L30 8 L37 4 L44 2" : "M0 3 L8 6 L15 5 L22 9 L30 8 L37 12 L44 13"}
+        d={
+          up
+            ? "M0 13 L8 11 L15 12 L22 7 L30 8 L37 4 L44 2"
+            : "M0 3 L8 6 L15 5 L22 9 L30 8 L37 12 L44 13"
+        }
         fill="none"
         stroke={up ? "var(--color-success)" : "var(--color-destructive)"}
         strokeWidth="1.6"
@@ -241,7 +264,9 @@ function ScreenHeader({
   return (
     <div className="flex flex-wrap items-center justify-between gap-2">
       <div className="min-w-0">
-        <p className="text-[8px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">{subtitle}</p>
+        <p className="text-[8px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+          {subtitle}
+        </p>
         <p className="truncate text-[13px] font-semibold tracking-tight">{title}</p>
       </div>
       <div className="flex items-center gap-1.5">{right}</div>
@@ -287,13 +312,20 @@ export function HeroConsole() {
 
               <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
                 {heroKpis.map((kpi) => (
-                  <div key={kpi.label} className="rounded-lg border border-border/80 bg-background/70 p-2">
+                  <div
+                    key={kpi.label}
+                    className="rounded-lg border border-border/80 bg-background/70 p-2"
+                  >
                     <div className="flex items-center justify-between text-muted-foreground">
                       <kpi.icon className="h-3 w-3" />
                       <Sparkline up={kpi.up} />
                     </div>
-                    <p className="mt-1.5 text-[13px] font-bold leading-none tracking-tight">{kpi.value}</p>
-                    <p className="mt-1 truncate text-[8px] font-medium text-muted-foreground">{kpi.label}</p>
+                    <p className="mt-1.5 text-[13px] font-bold leading-none tracking-tight">
+                      {kpi.value}
+                    </p>
+                    <p className="mt-1 truncate text-[8px] font-medium text-muted-foreground">
+                      {kpi.label}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -325,10 +357,14 @@ export function HeroConsole() {
                   <div className="flex items-center gap-2.5">
                     <Ring value={96} size={54} stroke={6}>
                       <span className="text-[11px] font-bold leading-none">96%</span>
-                      <span className="mt-0.5 text-[6px] uppercase tracking-wide text-muted-foreground">SLA</span>
+                      <span className="mt-0.5 text-[6px] uppercase tracking-wide text-muted-foreground">
+                        SLA
+                      </span>
                     </Ring>
                     <div className="min-w-0">
-                      <p className="text-[9px] font-semibold leading-tight">Resolution within SLA</p>
+                      <p className="text-[9px] font-semibold leading-tight">
+                        Resolution within SLA
+                      </p>
                       <p className="mt-0.5 text-[8px] text-muted-foreground">Last 30 days</p>
                       <Pill tone="success" className="mt-1">
                         <ArrowUpRight className="h-2.5 w-2.5" /> 3.1%
@@ -341,14 +377,23 @@ export function HeroConsole() {
                       { label: "Biometric sync", tone: "warning" as const, tag: "High" },
                       { label: "ERP disk 91%", tone: "primary" as const, tag: "Medium" },
                     ].map((row) => (
-                      <div key={row.label} className="flex items-center gap-1.5 rounded-md bg-muted/50 px-1.5 py-1">
+                      <div
+                        key={row.label}
+                        className="flex items-center gap-1.5 rounded-md bg-muted/50 px-1.5 py-1"
+                      >
                         <span
                           className={cn(
                             "h-1.5 w-1.5 shrink-0 rounded-full",
-                            row.tone === "danger" ? "bg-destructive" : row.tone === "warning" ? "bg-accent" : "bg-primary",
+                            row.tone === "danger"
+                              ? "bg-destructive"
+                              : row.tone === "warning"
+                                ? "bg-accent"
+                                : "bg-primary",
                           )}
                         />
-                        <span className="min-w-0 flex-1 truncate text-[8px] font-medium">{row.label}</span>
+                        <span className="min-w-0 flex-1 truncate text-[8px] font-medium">
+                          {row.label}
+                        </span>
                         <span className="text-[7px] text-muted-foreground">{row.tag}</span>
                       </div>
                     ))}
@@ -384,7 +429,9 @@ export function HeroConsole() {
             <p className="text-[9px] font-semibold">AMC renewal</p>
             <Pill tone="warning">12 days</Pill>
           </div>
-          <p className="mt-0.5 truncate text-[8px] text-muted-foreground">Northline Logistics · ₹18.4L</p>
+          <p className="mt-0.5 truncate text-[8px] text-muted-foreground">
+            Northline Logistics · ₹18.4L
+          </p>
           <div className="mt-1.5">
             <Meter value={78} tone="bg-accent" />
           </div>
@@ -401,25 +448,134 @@ export function HeroConsole() {
 export type ShowcaseVariant = "overview" | "tickets" | "amc" | "endpoints";
 
 const ticketRows = [
-  { id: "TKT-9001", subject: "Camera 12 offline in cold storage", tenant: "Northline Logistics", priority: "Critical", tone: "danger" as const, sla: 74, status: "In progress", statusTone: "primary" as const },
-  { id: "TKT-9002", subject: "Biometric punch sync failing", tenant: "Sterling Retail", priority: "High", tone: "warning" as const, sla: 52, status: "Open", statusTone: "muted" as const },
-  { id: "TKT-9003", subject: "Packet loss on Hebbal uplink", tenant: "Northline Logistics", priority: "High", tone: "warning" as const, sla: 38, status: "On hold", statusTone: "muted" as const },
-  { id: "TKT-9004", subject: "ERP server disk at 91%", tenant: "Vertex Manufacturing", priority: "Medium", tone: "primary" as const, sla: 61, status: "In progress", statusTone: "primary" as const },
-  { id: "TKT-9005", subject: "NVR firmware upgrade request", tenant: "Aurora Textiles", priority: "Low", tone: "muted" as const, sla: 90, status: "Resolved", statusTone: "success" as const },
+  {
+    id: "TKT-9001",
+    subject: "Camera 12 offline in cold storage",
+    tenant: "Northline Logistics",
+    priority: "Critical",
+    tone: "danger" as const,
+    sla: 74,
+    status: "In progress",
+    statusTone: "primary" as const,
+  },
+  {
+    id: "TKT-9002",
+    subject: "Biometric punch sync failing",
+    tenant: "Sterling Retail",
+    priority: "High",
+    tone: "warning" as const,
+    sla: 52,
+    status: "Open",
+    statusTone: "muted" as const,
+  },
+  {
+    id: "TKT-9003",
+    subject: "Packet loss on Hebbal uplink",
+    tenant: "Northline Logistics",
+    priority: "High",
+    tone: "warning" as const,
+    sla: 38,
+    status: "On hold",
+    statusTone: "muted" as const,
+  },
+  {
+    id: "TKT-9004",
+    subject: "ERP server disk at 91%",
+    tenant: "Vertex Manufacturing",
+    priority: "Medium",
+    tone: "primary" as const,
+    sla: 61,
+    status: "In progress",
+    statusTone: "primary" as const,
+  },
+  {
+    id: "TKT-9005",
+    subject: "NVR firmware upgrade request",
+    tenant: "Aurora Textiles",
+    priority: "Low",
+    tone: "muted" as const,
+    sla: 90,
+    status: "Resolved",
+    statusTone: "success" as const,
+  },
 ];
 
 const endpointRows = [
-  { host: "aurora-hq-nvr01", os: "Windows Server 2022", cpu: 38, ram: 61, disk: 44, patch: "Current", tone: "success" as const },
-  { host: "northline-dc-fw01", os: "FortiOS 7.4", cpu: 22, ram: 40, disk: 31, patch: "Current", tone: "success" as const },
-  { host: "sterling-pos-114", os: "Windows 11 Pro", cpu: 71, ram: 68, disk: 83, patch: "Pending", tone: "warning" as const },
-  { host: "meridian-erp-app", os: "Ubuntu 24.04 LTS", cpu: 56, ram: 74, disk: 91, patch: "Critical", tone: "danger" as const },
-  { host: "vertex-plc-gw", os: "Windows 10 IoT", cpu: 44, ram: 52, disk: 60, patch: "Pending", tone: "warning" as const },
+  {
+    host: "aurora-hq-nvr01",
+    os: "Windows Server 2022",
+    cpu: 38,
+    ram: 61,
+    disk: 44,
+    patch: "Current",
+    tone: "success" as const,
+  },
+  {
+    host: "northline-dc-fw01",
+    os: "FortiOS 7.4",
+    cpu: 22,
+    ram: 40,
+    disk: 31,
+    patch: "Current",
+    tone: "success" as const,
+  },
+  {
+    host: "sterling-pos-114",
+    os: "Windows 11 Pro",
+    cpu: 71,
+    ram: 68,
+    disk: 83,
+    patch: "Pending",
+    tone: "warning" as const,
+  },
+  {
+    host: "meridian-erp-app",
+    os: "Ubuntu 24.04 LTS",
+    cpu: 56,
+    ram: 74,
+    disk: 91,
+    patch: "Critical",
+    tone: "danger" as const,
+  },
+  {
+    host: "vertex-plc-gw",
+    os: "Windows 10 IoT",
+    cpu: 44,
+    ram: 52,
+    disk: 60,
+    patch: "Pending",
+    tone: "warning" as const,
+  },
 ];
 
 const contracts = [
-  { company: "Aurora Textiles", plan: "Comprehensive", value: "₹42.6L", date: "Ends 14 Mar 2027", status: "Active", tone: "success" as const, progress: 72 },
-  { company: "Northline Logistics", plan: "Non-Comprehensive", value: "₹18.4L", date: "Ends 09 Nov 2026", status: "Expiring", tone: "warning" as const, progress: 91 },
-  { company: "Vertex Manufacturing", plan: "Labour Only", value: "₹6.2L", date: "Ended 02 Jul 2026", status: "Expired", tone: "danger" as const, progress: 100 },
+  {
+    company: "Aurora Textiles",
+    plan: "Comprehensive",
+    value: "₹42.6L",
+    date: "Ends 14 Mar 2027",
+    status: "Active",
+    tone: "success" as const,
+    progress: 72,
+  },
+  {
+    company: "Northline Logistics",
+    plan: "Non-Comprehensive",
+    value: "₹18.4L",
+    date: "Ends 09 Nov 2026",
+    status: "Expiring",
+    tone: "warning" as const,
+    progress: 91,
+  },
+  {
+    company: "Vertex Manufacturing",
+    plan: "Labour Only",
+    value: "₹6.2L",
+    date: "Ended 02 Jul 2026",
+    status: "Expired",
+    tone: "danger" as const,
+    progress: 100,
+  },
 ];
 
 function OverviewScreen() {
@@ -445,8 +601,12 @@ function OverviewScreen() {
               <kpi.icon className="h-3 w-3 text-muted-foreground" />
               <Sparkline up={kpi.up} />
             </div>
-            <p className="mt-2 text-sm font-bold leading-none tracking-tight sm:text-base">{kpi.value}</p>
-            <p className="mt-1 truncate text-[9px] font-medium text-muted-foreground">{kpi.label}</p>
+            <p className="mt-2 text-sm font-bold leading-none tracking-tight sm:text-base">
+              {kpi.value}
+            </p>
+            <p className="mt-1 truncate text-[9px] font-medium text-muted-foreground">
+              {kpi.label}
+            </p>
           </div>
         ))}
       </div>
@@ -479,7 +639,9 @@ function OverviewScreen() {
             <div className="flex items-center gap-3">
               <Ring value={96} size={62} stroke={6}>
                 <span className="text-xs font-bold leading-none">96%</span>
-                <span className="mt-0.5 text-[6px] uppercase tracking-wide text-muted-foreground">SLA</span>
+                <span className="mt-0.5 text-[6px] uppercase tracking-wide text-muted-foreground">
+                  SLA
+                </span>
               </Ring>
               <div>
                 <p className="text-[10px] font-semibold">Resolution within SLA</p>
@@ -502,10 +664,16 @@ function OverviewScreen() {
                   <span
                     className={cn(
                       "h-1.5 w-1.5 shrink-0 rounded-full",
-                      t.tone === "danger" ? "bg-destructive" : t.tone === "warning" ? "bg-accent" : "bg-primary",
+                      t.tone === "danger"
+                        ? "bg-destructive"
+                        : t.tone === "warning"
+                          ? "bg-accent"
+                          : "bg-primary",
                     )}
                   />
-                  <span className="min-w-0 flex-1 truncate text-[8px] font-medium">{t.subject}</span>
+                  <span className="min-w-0 flex-1 truncate text-[8px] font-medium">
+                    {t.subject}
+                  </span>
                   <span className="text-[7px] text-muted-foreground">{t.priority}</span>
                 </div>
               ))}
@@ -537,7 +705,9 @@ function TicketsScreen() {
             key={f}
             className={cn(
               "rounded-full border px-2 py-0.5 text-[8px] font-medium",
-              i === 0 ? "border-primary/30 bg-primary-soft text-primary" : "border-border text-muted-foreground",
+              i === 0
+                ? "border-primary/30 bg-primary-soft text-primary"
+                : "border-border text-muted-foreground",
             )}
           >
             {f}
@@ -567,7 +737,16 @@ function TicketsScreen() {
               <Pill tone={t.tone}>{t.priority}</Pill>
             </div>
             <div className="hidden sm:block">
-              <Meter value={t.sla} tone={t.tone === "danger" ? "bg-destructive" : t.tone === "warning" ? "bg-accent" : "bg-primary"} />
+              <Meter
+                value={t.sla}
+                tone={
+                  t.tone === "danger"
+                    ? "bg-destructive"
+                    : t.tone === "warning"
+                      ? "bg-accent"
+                      : "bg-primary"
+                }
+              />
               <p className="mt-0.5 text-[7px] text-muted-foreground">{t.sla}% of window left</p>
             </div>
             <div className="hidden justify-end sm:flex">
@@ -621,7 +800,16 @@ function AmcScreen() {
             <p className="mt-1.5 text-sm font-bold leading-none tracking-tight">{c.value}</p>
             <p className="mt-0.5 text-[7px] text-muted-foreground">{c.date}</p>
             <div className="mt-1.5">
-              <Meter value={c.progress} tone={c.tone === "danger" ? "bg-destructive" : c.tone === "warning" ? "bg-accent" : "bg-success"} />
+              <Meter
+                value={c.progress}
+                tone={
+                  c.tone === "danger"
+                    ? "bg-destructive"
+                    : c.tone === "warning"
+                      ? "bg-accent"
+                      : "bg-success"
+                }
+              />
             </div>
           </div>
         ))}
@@ -652,8 +840,14 @@ function AmcScreen() {
             { left: "62%", label: "Northline", tone: "bg-accent" },
             { left: "88%", label: "Vertex", tone: "bg-destructive" },
           ].map((m) => (
-            <span key={m.label} className="absolute -top-1 -translate-x-1/2" style={{ left: m.left }}>
-              <span className={cn("block h-3.5 w-3.5 rounded-full border-2 border-surface", m.tone)} />
+            <span
+              key={m.label}
+              className="absolute -top-1 -translate-x-1/2"
+              style={{ left: m.left }}
+            >
+              <span
+                className={cn("block h-3.5 w-3.5 rounded-full border-2 border-surface", m.tone)}
+              />
               <span className="absolute left-1/2 top-4 -translate-x-1/2 whitespace-nowrap text-[7px] text-muted-foreground">
                 {m.label}
               </span>
@@ -756,7 +950,9 @@ function EndpointsScreen() {
               <Server className="h-3 w-3 shrink-0 text-muted-foreground" />
               <span className="truncate text-[8px] font-semibold">{e.host}</span>
             </div>
-            <span className="hidden truncate text-[7px] text-muted-foreground sm:block">{e.os}</span>
+            <span className="hidden truncate text-[7px] text-muted-foreground sm:block">
+              {e.os}
+            </span>
             <div className="hidden sm:block">
               <Meter value={e.cpu} tone={e.cpu > 70 ? "bg-accent" : "bg-primary"} />
               <span className="text-[6px] text-muted-foreground">{e.cpu}%</span>
@@ -766,7 +962,10 @@ function EndpointsScreen() {
               <span className="text-[6px] text-muted-foreground">{e.ram}%</span>
             </div>
             <div className="hidden sm:block">
-              <Meter value={e.disk} tone={e.disk > 80 ? "bg-destructive" : e.disk > 60 ? "bg-accent" : "bg-success"} />
+              <Meter
+                value={e.disk}
+                tone={e.disk > 80 ? "bg-destructive" : e.disk > 60 ? "bg-accent" : "bg-success"}
+              />
               <span className="text-[6px] text-muted-foreground">{e.disk}%</span>
             </div>
             <div className="flex justify-end">
@@ -777,14 +976,19 @@ function EndpointsScreen() {
       </div>
 
       <div className="mt-2.5 flex flex-wrap items-center gap-1.5 rounded-lg border border-border bg-muted/30 p-2">
-        <span className="text-[7px] font-semibold uppercase tracking-wide text-muted-foreground">Remote</span>
+        <span className="text-[7px] font-semibold uppercase tracking-wide text-muted-foreground">
+          Remote
+        </span>
         {[
           { icon: Search, label: "Diagnose" },
           { icon: ShieldCheck, label: "Patch" },
           { icon: CheckCircle2, label: "Restart" },
           { icon: Wifi, label: "Wake" },
         ].map((a) => (
-          <span key={a.label} className="inline-flex items-center gap-1 rounded-md border border-border bg-surface px-1.5 py-0.5 text-[7px] font-medium">
+          <span
+            key={a.label}
+            className="inline-flex items-center gap-1 rounded-md border border-border bg-surface px-1.5 py-0.5 text-[7px] font-medium"
+          >
             <a.icon className="h-2.5 w-2.5" /> {a.label}
           </span>
         ))}
