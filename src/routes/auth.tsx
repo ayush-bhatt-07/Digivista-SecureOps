@@ -143,11 +143,11 @@ function AuthPage() {
             <span className="h-1 w-1 rounded-full bg-accent" />
             Secure operations
           </p>
-          <h1 className="mt-4 text-4xl font-bold leading-[1.05] tracking-[-0.035em] text-white xl:text-[2.9rem]">
+          <p className="mt-4 text-4xl font-bold leading-[1.05] tracking-[-0.035em] text-white xl:text-[2.9rem]">
             Your estate.
             <br />
             One login.
-          </h1>
+          </p>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-sidebar-foreground/60">
             Role-scoped access to every tenant, site, device and ticket — with every action on the
             record.
@@ -236,9 +236,9 @@ function AuthPage() {
               <ShieldCheck className="h-3 w-3" />
               {mode === "signin" ? "Secure sign-in" : "New workspace"}
             </span>
-            <h2 className="mt-4 text-2xl font-bold tracking-[-0.02em] text-foreground sm:text-[1.7rem]">
+            <h1 className="mt-4 text-2xl font-bold tracking-[-0.02em] text-foreground sm:text-[1.7rem]">
               {mode === "signin" ? "Sign in to SecureOps" : "Create your account"}
-            </h2>
+            </h1>
             <p className="mt-1.5 text-sm text-muted-foreground">
               {mode === "signin"
                 ? "Use your work email. Access follows your role."

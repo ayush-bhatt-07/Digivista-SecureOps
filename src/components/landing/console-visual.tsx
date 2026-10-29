@@ -855,8 +855,8 @@ function AmcScreen() {
           ))}
         </div>
         <div className="mt-7 flex justify-between text-[7px] text-muted-foreground">
-          {["Jul", "Oct", "Jan", "Apr", "Jul"].map((m) => (
-            <span key={m}>{m}</span>
+          {["Jul", "Oct", "Jan", "Apr", "Jul"].map((m, index) => (
+            <span key={`${m}-${index}`}>{m}</span>
           ))}
         </div>
       </div>

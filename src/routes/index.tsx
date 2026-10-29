@@ -577,7 +577,10 @@ function LandingPage() {
         className={cn(
           "fixed inset-x-0 top-0 z-50 transition-all duration-300",
           solidHeader
-            ? "border-b border-border bg-surface/85 backdrop-blur-xl"
+            ? cn(
+                "border-b border-border",
+                menuOpen ? "bg-surface" : "bg-surface/85 backdrop-blur-xl",
+              )
             : "border-b border-transparent bg-transparent",
         )}
       >
@@ -802,7 +805,7 @@ function LandingPage() {
             </div>
           </Reveal>
 
-          <div id="modules" className="mt-10 grid scroll-mt-24 gap-4 lg:grid-cols-12">
+          <div id="modules" className="mt-10 grid gap-4 lg:grid-cols-12">
             <BentoCard
               className="lg:col-span-7"
               icon={HardDrive}

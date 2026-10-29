@@ -22,7 +22,7 @@ export function Reveal({
     if (!el) return;
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) {
+    if (reduce || typeof IntersectionObserver === "undefined") {
       el.dataset.shown = "true";
       return;
     }
@@ -36,7 +36,8 @@ export function Reveal({
           }
         }
       },
-      { threshold: 0.12, rootMargin: "0px 0px -6% 0px" },
+      // Threshold 0 (not a ratio) so wrappers taller than the viewport still reveal.
+      { threshold: 0, rootMargin: "0px 0px -8% 0px" },
     );
 
     observer.observe(el);
@@ -70,6 +71,7 @@ export function CountUp({
     const el = ref.current;
     if (!el) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (typeof IntersectionObserver === "undefined") return;
 
     let frame = 0;
     let started = false;
